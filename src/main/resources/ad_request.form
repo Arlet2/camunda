@@ -49,7 +49,7 @@
         "columns": null
       },
       "id": "Field_14t8hh2",
-      "key": "text",
+      "key": "request_text",
       "validate": {
         "required": true,
         "minLength": 10

@@ -3,7 +3,7 @@
     {
       "components": [
         {
-          "text": "Аудитория: {{auditory}}\nКоличество часов: {{hour_count}}\nПожелания: {{text}}",
+          "text": "Аудитория: {{auditory}}\nКоличество часов: {{hour_count}}\nПожелания: {{request_text}}",
           "label": "Text view",
           "type": "text",
           "layout": {

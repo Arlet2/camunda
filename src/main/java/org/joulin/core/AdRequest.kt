@@ -11,9 +11,6 @@ class AdRequest(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @ManyToOne
-    @JoinColumn(name = "ownerId")
-    val owner: User,
     @Embedded
     var auditory: Auditory?,
 

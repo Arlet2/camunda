@@ -18,9 +18,6 @@ class AdPost(
     var publishDate: LocalDateTime? = null,
 
     @ManyToOne
-    var salesEditor: User?,
-
-    @ManyToOne
     var image: Image?,
 
     @OneToOne
