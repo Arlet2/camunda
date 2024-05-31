@@ -54,6 +54,19 @@
         "required": true,
         "minLength": 10
       }
+    },
+    {
+      "label": "Ссылка",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1udxwa0",
+        "columns": null
+      },
+      "id": "Field_1awax9r",
+      "key": "target_link",
+      "validate": {
+        "required": true
+      }
     }
   ],
   "type": "default",
