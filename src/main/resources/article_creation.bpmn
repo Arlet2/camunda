@@ -75,12 +75,8 @@
       <bpmn:outgoing>Flow_0a9u0ci</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0e043u5" sourceRef="Activity_0n3hqb1" targetRef="Activity_0mddtbr" />
-    <bpmn:userTask id="Activity_0n3hqb1" name="Добавление рекламы">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="article_ad_id" label="Введите id рекламы" type="long" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:userTask id="Activity_0n3hqb1" name="Добавление рекламы" camunda:formRef="ad_adding" camunda:formRefBinding="latest">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_0ya1os2</bpmn:incoming>
       <bpmn:outgoing>Flow_0e043u5</bpmn:outgoing>
     </bpmn:userTask>
