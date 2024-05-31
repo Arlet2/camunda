@@ -68,9 +68,9 @@
         "columns": null
       },
       "id": "Field_170v55k",
-      "key": "approved",
+      "key": "is_correct",
       "validate": {
-        "required": true
+        "required": false
       }
     },
     {
@@ -85,7 +85,7 @@
     }
   ],
   "type": "default",
-  "id": "Form_1h6x37p",
+  "id": "article_moderation",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.23.0"

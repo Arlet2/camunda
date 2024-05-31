@@ -17,7 +17,7 @@ public class CamundaApplication {
 
     @EventListener
     private void processPostDeploy(PostDeployEvent event) {
-        runtimeService.startProcessInstanceByKey("app");
+        runtimeService.startProcessInstanceByKey("article_creation");
     }
 
     public static void main(String[] args) {

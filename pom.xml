@@ -62,16 +62,16 @@
             <artifactId>jaxb-impl</artifactId>
             <version>4.0.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.camunda.spin</groupId>
+            <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
+            <version>1.23.0</version>
+        </dependency>
         <!--
         <dependency>
             <groupId>org.camunda.bpm</groupId>
             <artifactId>camunda-engine</artifactId>
             <version>7.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.camunda.spin</groupId>
-            <artifactId>camunda-spin-dataformat-json-jackson</artifactId>
-            <version>1.6.7</version>
         </dependency>
         <dependency>
             <groupId>org.camunda.spin</groupId>

@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0167b4f-c06f-4a07-8921-3baf9bab4448" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/joulin/CamundaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/joulin/CamundaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/processes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/processes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app.bpmn" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.bpmn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/article_moderation.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/article_moderation.form" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.CamundaApplication.executor": "Run",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
@@ -100,6 +103,7 @@
       <workItem from="1717069173593" duration="1404000" />
       <workItem from="1717109006760" duration="107000" />
       <workItem from="1717109117623" duration="3159000" />
+      <workItem from="1717157281174" duration="1831000" />
     </task>
     <servers />
   </component>

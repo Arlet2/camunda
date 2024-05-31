@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0xdpo79" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.23.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
   <bpmn:collaboration id="Collaboration_1ew8nb7">
-    <bpmn:participant id="Participant_16znmxd" name="Pool" processRef="app" />
+    <bpmn:participant id="Participant_16znmxd" name="Pool" processRef="article_creation" />
   </bpmn:collaboration>
-  <bpmn:process id="app" isExecutable="true">
+  <bpmn:process id="article_creation" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0q5vjzm">
       <bpmn:lane id="Lane_0my0p3f" name="Журналист">
         <bpmn:flowNodeRef>CreateArticle</bpmn:flowNodeRef>
@@ -17,12 +17,8 @@
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_1b1j2r0" sourceRef="StartEvent_1" targetRef="CreateArticle" />
     <bpmn:sequenceFlow id="Flow_0lfw5r7" sourceRef="CreateArticle" targetRef="CheckArticle" />
-    <bpmn:userTask id="CreateArticle" name="Написание статьи">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="test" label="TEST" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:userTask id="CreateArticle" name="Написание статьи" camunda:formRef="article_creation" camunda:formRefBinding="latest">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_1b1j2r0</bpmn:incoming>
       <bpmn:incoming>Flow_0aia2b2</bpmn:incoming>
       <bpmn:outgoing>Flow_0lfw5r7</bpmn:outgoing>
@@ -31,14 +27,8 @@
       <bpmn:extensionElements />
       <bpmn:outgoing>Flow_1b1j2r0</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="CheckArticle" name="Вычитка статьи">
+    <bpmn:userTask id="CheckArticle" name="Вычитка статьи" camunda:formRef="article_moderation" camunda:formRefBinding="latest">
       <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="is_correct" label="Одобряем?" type="boolean" defaultValue="false" />
-          <camunda:formField id="comments" label="Комментарии" type="string">
-            <camunda:validation />
-          </camunda:formField>
-        </camunda:formData>
         <camunda:inputOutput>
           <camunda:outputParameter name="is_correct">${is_correct}</camunda:outputParameter>
         </camunda:inputOutput>
