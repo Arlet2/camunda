@@ -52,12 +52,12 @@
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_05snmgm" sourceRef="StartEvent_1" targetRef="Activity_1haqhxi" />
     <bpmn:sequenceFlow id="Flow_1d2k3md" name="Нет" sourceRef="Gateway_1aftc37" targetRef="Activity_1haqhxi">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">1 &gt; 0</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${test == value}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1b2lpk0" sourceRef="Activity_1haqhxi" targetRef="Activity_0ey1tya" />
     <bpmn:sequenceFlow id="Flow_1sncfib" sourceRef="Activity_0ey1tya" targetRef="Gateway_1aftc37" />
     <bpmn:sequenceFlow id="Flow_104a7mv" name="Да" sourceRef="Gateway_1aftc37" targetRef="Activity_0ae3nsg">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">3 &lt; 1</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${ test != value}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_01b7vei" sourceRef="Activity_0ae3nsg" targetRef="Gateway_0b0cy01" />
     <bpmn:sequenceFlow id="Flow_1bbfrvz" sourceRef="Gateway_0b0cy01" targetRef="Event_0j6i7iw" />
