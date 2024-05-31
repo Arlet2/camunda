@@ -15,6 +15,7 @@
         <resource>ad_process.bpmn</resource>
         <resource>ad_request.form</resource>
         <resource>ad_moderation.form</resource>
+        <resource>ad_preparation.form</resource>
 
         <properties>
             <property name="isDeleteUponUndeploy">false</property>
