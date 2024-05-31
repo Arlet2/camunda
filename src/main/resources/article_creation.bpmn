@@ -21,7 +21,7 @@
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_1b1j2r0" sourceRef="StartEvent_1" targetRef="CreateArticle" />
     <bpmn:sequenceFlow id="Flow_0lfw5r7" sourceRef="CreateArticle" targetRef="CheckArticle" />
-    <bpmn:userTask id="CreateArticle" name="Написание статьи" camunda:formRef="article_creation" camunda:formRefBinding="latest">
+    <bpmn:userTask id="CreateArticle" name="Написание статьи" camunda:formRef="article_creation" camunda:formRefBinding="latest" camunda:candidateGroups="Journalists">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_1b1j2r0</bpmn:incoming>
       <bpmn:incoming>Flow_0aia2b2</bpmn:incoming>
@@ -31,7 +31,7 @@
       <bpmn:extensionElements />
       <bpmn:outgoing>Flow_1b1j2r0</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="CheckArticle" name="Вычитка статьи" camunda:formRef="article_moderation" camunda:formRefBinding="latest">
+    <bpmn:userTask id="CheckArticle" name="Вычитка статьи" camunda:formRef="article_moderation" camunda:formRefBinding="latest" camunda:candidateGroups="Editors">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_0lfw5r7</bpmn:incoming>
       <bpmn:outgoing>Flow_17p435v</bpmn:outgoing>
@@ -71,10 +71,10 @@
       <bpmn:outgoing>Flow_0a9u0ci</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0e043u5" sourceRef="Activity_0n3hqb1" targetRef="Activity_0mddtbr" />
-    <bpmn:userTask id="Activity_0n3hqb1" name="Добавление рекламы" camunda:formRef="ad_adding" camunda:formRefBinding="latest">
+    <bpmn:userTask id="Activity_0n3hqb1" name="Добавление рекламы" camunda:formRef="ad_adding" camunda:formRefBinding="latest" camunda:candidateGroups="Editors">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:outputParameter name="chosen_ad_posts">${ad_posts}</camunda:outputParameter>
+          <camunda:outputParameter name="chosen_ad_posts" />
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0ya1os2</bpmn:incoming>

@@ -43,13 +43,13 @@ public class PublishAdPost implements JavaDelegate {
 
         AdRequest adRequest = new AdRequest(
                 0, new Auditory(auditory, null, null, null),
-                ad_request_text, null, null, hour_count, AdRequestStatus.PUBLISHED
+                ad_request_text, null, null, hour_count, AdRequestStatus.READY_TO_PUBLISH
         );
         adRequest = adRequestRepo.save(adRequest);
 
         AdPost adPost = new AdPost(
                 0, title, ad_text, targetLink, LocalDateTime.now(),
-                null, adRequest, AdPostStatus.PUBLISHED, null
+                null, adRequest, AdPostStatus.READY_TO_PUBLISH, null
         );
 
         adPostRepo.save(adPost);

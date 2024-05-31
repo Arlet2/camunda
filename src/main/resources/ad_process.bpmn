@@ -60,7 +60,7 @@
       <bpmn:outgoing>Flow_0tw9hcl</bpmn:outgoing>
       <bpmn:outgoing>Flow_1bbfrvz</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:serviceTask id="Activity_0ae3nsg" name="Обновление каталога рекламы" camunda:expression="1" camunda:resultVariable="2+3">
+    <bpmn:serviceTask id="Activity_0ae3nsg" name="Обновление каталога рекламы" camunda:delegateExpression="${publishAdPost}">
       <bpmn:incoming>Flow_04jure2</bpmn:incoming>
       <bpmn:outgoing>Flow_01b7vei</bpmn:outgoing>
     </bpmn:serviceTask>
