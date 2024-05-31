@@ -1,13 +1,10 @@
 package org.joulin.delegate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.bpm.engine.variable.value.TypedValue;
 import org.camunda.spin.impl.json.jackson.JacksonJsonNode;
 import org.joulin.core.AdPost;
 import org.joulin.core.Article;
-import org.joulin.core.enums.AdPostStatus;
 import org.joulin.core.enums.ArticleStatus;
 import org.joulin.repos.AdPostRepo;
 import org.joulin.repos.ArticleRepo;
@@ -32,14 +29,14 @@ public class PublishArticle implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         String title = (String) delegateExecution.getVariable("article_title");
         String text = (String) delegateExecution.getVariable("article_text");
-        JacksonJsonNode ad_posts_json = (JacksonJsonNode) delegateExecution.getVariable("chosen_ad_posts");
+        List<SelectableAdPost> ad_posts_arr = (List<SelectableAdPost>) delegateExecution.getVariable("chosen_ad_posts");
 
         List<Long> ad_posts_ids = new ArrayList<>();
 
-        if (ad_posts_json != null) {
-            ad_posts_ids = ad_posts_json.elements().stream()
-                    .filter(map -> map.hasProp("chosen") && map.prop("chosen").boolValue())
-                    .map(map -> map.prop("id").numberValue().longValue()).toList();
+        if (ad_posts_arr != null) {
+            ad_posts_ids = ad_posts_arr.stream()
+                    .filter(SelectableAdPost::getChosen)
+                    .map(SelectableAdPost::getId).toList();
         }
 
         JacksonJsonNode img_links_json = (JacksonJsonNode) delegateExecution.getVariable("img_links");
@@ -57,32 +54,13 @@ public class PublishArticle implements JavaDelegate {
         articleRepo.save(article);
     }
 
-    class ImageLinks implements Serializable {
-        public List<ImageLink> links;
-        public ImageLinks(List<ImageLink> links) {
-            this.links = links;
-        }
+    class ChosenAd implements Serializable {
+        public Boolean chosen;
+        public Long id;
 
-        public List<ImageLink> getLinks() {
-            return links;
-        }
-
-        public void setLinks(List<ImageLink> links) {
-            this.links = links;
-        }
-    }
-    class ImageLink implements Serializable {
-        public String link;
-        public ImageLink(String link) {
-            this.link = link;
-        }
-
-        public String getLink() {
-            return link;
-        }
-
-        public void setLink(String link) {
-            this.link = link;
+        public ChosenAd(Boolean chosen, Long id) {
+            this.chosen = chosen;
+            this.id = id;
         }
     }
 }
