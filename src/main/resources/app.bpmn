@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0xdpo79" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.23.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:collaboration id="Collaboration_1ew8nb7">
+    <bpmn:participant id="Participant_16znmxd" name="Pool" processRef="app" />
+  </bpmn:collaboration>
+  <bpmn:process id="app" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_0q5vjzm">
+      <bpmn:lane id="Lane_0my0p3f" name="Журналист">
+        <bpmn:flowNodeRef>CreateArticle</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0y84tpa" name="Редактор">
+        <bpmn:flowNodeRef>CheckArticle</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0k73wqn</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1lcn7to</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:sequenceFlow id="Flow_1b1j2r0" sourceRef="StartEvent_1" targetRef="CreateArticle" />
+    <bpmn:sequenceFlow id="Flow_0lfw5r7" sourceRef="CreateArticle" targetRef="CheckArticle" />
+    <bpmn:userTask id="CreateArticle" name="Написание статьи">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="test" label="TEST" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1b1j2r0</bpmn:incoming>
+      <bpmn:incoming>Flow_0aia2b2</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lfw5r7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements />
+      <bpmn:outgoing>Flow_1b1j2r0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="CheckArticle" name="Вычитка статьи">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="is_correct" label="Одобряем?" type="boolean" defaultValue="false" />
+          <camunda:formField id="comments" label="Комментарии" type="string">
+            <camunda:validation />
+          </camunda:formField>
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="is_correct">${is_correct}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0lfw5r7</bpmn:incoming>
+      <bpmn:outgoing>Flow_17p435v</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_0k73wqn" name="Статья корректна?">
+      <bpmn:incoming>Flow_17p435v</bpmn:incoming>
+      <bpmn:outgoing>Flow_05vxcup</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0aia2b2</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_1lcn7to" name="End">
+      <bpmn:incoming>Flow_05vxcup</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_17p435v" sourceRef="CheckArticle" targetRef="Gateway_0k73wqn" />
+    <bpmn:sequenceFlow id="Flow_05vxcup" name="Да" sourceRef="Gateway_0k73wqn" targetRef="Event_1lcn7to">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${is_correct == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0aia2b2" name="Нет" sourceRef="Gateway_0k73wqn" targetRef="CreateArticle">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${is_correct == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+  </bpmn:process>
+  <bpmn:message id="Message_0h1r8bu" name="ClarificationMessage" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1ew8nb7">
+      <bpmndi:BPMNShape id="Participant_16znmxd_di" bpmnElement="Participant_16znmxd" isHorizontal="true">
+        <dc:Bounds x="129" y="40" width="791" height="470" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0y84tpa_di" bpmnElement="Lane_0y84tpa" isHorizontal="true">
+        <dc:Bounds x="159" y="265" width="761" height="245" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0my0p3f_di" bpmnElement="Lane_0my0p3f" isHorizontal="true">
+        <dc:Bounds x="159" y="40" width="761" height="225" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0y2qt9c_di" bpmnElement="CreateArticle">
+        <dc:Bounds x="370" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="252" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0minhnd_di" bpmnElement="CheckArticle">
+        <dc:Bounds x="370" y="360" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0k73wqn_di" bpmnElement="Gateway_0k73wqn" isMarkerVisible="true">
+        <dc:Bounds x="575" y="375" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="571" y="432" width="58" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1lcn7to_di" bpmnElement="Event_1lcn7to">
+        <dc:Bounds x="772" y="382" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="780" y="425" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1b1j2r0_di" bpmnElement="Flow_1b1j2r0">
+        <di:waypoint x="288" y="190" />
+        <di:waypoint x="370" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lfw5r7_di" bpmnElement="Flow_0lfw5r7">
+        <di:waypoint x="420" y="230" />
+        <di:waypoint x="420" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17p435v_di" bpmnElement="Flow_17p435v">
+        <di:waypoint x="470" y="400" />
+        <di:waypoint x="575" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05vxcup_di" bpmnElement="Flow_05vxcup">
+        <di:waypoint x="625" y="400" />
+        <di:waypoint x="772" y="400" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="692" y="382" width="14" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0aia2b2_di" bpmnElement="Flow_0aia2b2">
+        <di:waypoint x="600" y="375" />
+        <di:waypoint x="600" y="190" />
+        <di:waypoint x="470" y="190" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="605" y="280" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
