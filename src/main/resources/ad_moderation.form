@@ -23,108 +23,14 @@
       "id": "Field_1pkrewq"
     },
     {
-      "components": [
-        {
-          "label": "Заголовок объявления",
-          "type": "textfield",
-          "layout": {
-            "row": "Row_0o6rubn",
-            "columns": null
-          },
-          "id": "Field_115lfe6",
-          "key": "title",
-          "validate": {
-            "required": true,
-            "minLength": 10
-          }
-        },
-        {
-          "label": "Текст объявления",
-          "type": "textarea",
-          "layout": {
-            "row": "Row_1oyzbvg",
-            "columns": null
-          },
-          "id": "Field_1kui2sw",
-          "key": "text",
-          "validate": {
-            "required": true,
-            "minLength": 15
-          }
-        },
-        {
-          "values": [
-            {
-              "label": "Дети",
-              "value": "KIDS"
-            },
-            {
-              "label": "Подростки",
-              "value": "TEENAGERS"
-            },
-            {
-              "label": "18+",
-              "value": "ADULTS"
-            }
-          ],
-          "label": "Аудитория",
-          "type": "select",
-          "layout": {
-            "row": "Row_1gv3fjy",
-            "columns": null
-          },
-          "id": "Field_1wnhg4m",
-          "key": "auditory",
-          "validate": {
-            "required": true
-          }
-        },
-        {
-          "label": "Количество часов",
-          "type": "number",
-          "layout": {
-            "row": "Row_1gv3fjy",
-            "columns": null
-          },
-          "id": "Field_0z4kmwr",
-          "key": "hour_count",
-          "validate": {
-            "required": true,
-            "min": 1
-          }
-        },
-        {
-          "action": "submit",
-          "label": "Отправить",
-          "type": "button",
-          "layout": {
-            "row": "Row_1cfu4ju",
-            "columns": null
-          },
-          "id": "Field_1s5wb1l"
-        },
-        {
-          "action": "submit",
-          "label": "Отказ",
-          "type": "button",
-          "layout": {
-            "row": "Row_1cfu4ju",
-            "columns": null
-          },
-          "id": "Field_0nhjqox",
-          "properties": {
-            "test": "false"
-          }
-        }
-      ],
-      "showOutline": true,
-      "label": "Пользователь получит",
-      "type": "group",
+      "label": "Едет дальше",
+      "type": "checkbox",
       "layout": {
-        "row": "Row_1pl3rhl",
+        "row": "Row_136a4ps",
         "columns": null
       },
-      "id": "Field_0iy8tep"
+      "id": "Field_0oi2mqh",
+      "key": "ad_request_ready"
     }
   ],
   "type": "default",

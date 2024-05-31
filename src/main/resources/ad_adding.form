@@ -53,6 +53,17 @@
         {
           "components": [
             {
+              "label": "ID",
+              "type": "number",
+              "layout": {
+                "row": "Row_1w8j9uv",
+                "columns": null
+              },
+              "id": "Field_0jfz589",
+              "key": "id",
+              "readonly": true
+            },
+            {
               "text": "Реклама {{this.title}}",
               "label": "Text view",
               "type": "text",
@@ -74,18 +85,6 @@
               "properties": {
                 "id": "{{this.id}}"
               }
-            },
-            {
-              "computeOn": "change",
-              "label": "Expression",
-              "type": "expression",
-              "layout": {
-                "row": "Row_1w8j9uv",
-                "columns": null
-              },
-              "id": "Field_0vqprrw",
-              "key": "id",
-              "expression": "=this.id"
             }
           ],
           "showOutline": true,
@@ -110,11 +109,12 @@
       },
       "id": "Field_01uh6wt",
       "path": "ad_posts",
-      "disableCollapse": false
+      "disableCollapse": false,
+      "properties": {}
     }
   ],
   "type": "default",
-  "id": "Form_1vltxa7",
+  "id": "ad_adding",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.23.0"

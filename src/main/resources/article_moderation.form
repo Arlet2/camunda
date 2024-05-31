@@ -25,7 +25,7 @@
         {
           "components": [
             {
-              "text": "TODO",
+              "text": "{{this.link}}",
               "label": "Text view",
               "type": "text",
               "layout": {
@@ -37,7 +37,7 @@
           ],
           "showOutline": true,
           "isRepeating": true,
-          "allowAddRemove": true,
+          "allowAddRemove": false,
           "defaultRepetitions": 1,
           "label": "Ссылки",
           "type": "dynamiclist",

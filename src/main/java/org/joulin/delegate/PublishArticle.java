@@ -32,7 +32,7 @@ public class PublishArticle implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         String title = (String) delegateExecution.getVariable("article_title");
         String text = (String) delegateExecution.getVariable("article_text");
-        JacksonJsonNode ad_posts_json = (JacksonJsonNode) delegateExecution.getVariable("ad_posts");
+        JacksonJsonNode ad_posts_json = (JacksonJsonNode) delegateExecution.getVariable("chosen_ad_posts");
 
         List<Long> ad_posts_ids = new ArrayList<>();
 

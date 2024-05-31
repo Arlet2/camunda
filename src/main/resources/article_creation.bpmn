@@ -32,11 +32,7 @@
       <bpmn:outgoing>Flow_1b1j2r0</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:userTask id="CheckArticle" name="Вычитка статьи" camunda:formRef="article_moderation" camunda:formRefBinding="latest">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:outputParameter name="is_correct">${is_correct}</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_0lfw5r7</bpmn:incoming>
       <bpmn:outgoing>Flow_17p435v</bpmn:outgoing>
     </bpmn:userTask>
@@ -76,7 +72,11 @@
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0e043u5" sourceRef="Activity_0n3hqb1" targetRef="Activity_0mddtbr" />
     <bpmn:userTask id="Activity_0n3hqb1" name="Добавление рекламы" camunda:formRef="ad_adding" camunda:formRefBinding="latest">
-      <bpmn:extensionElements />
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="chosen_ad_posts">${ad_posts}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0ya1os2</bpmn:incoming>
       <bpmn:outgoing>Flow_0e043u5</bpmn:outgoing>
     </bpmn:userTask>
