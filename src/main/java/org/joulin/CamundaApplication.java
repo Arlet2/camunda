@@ -11,15 +11,6 @@ import org.springframework.context.event.EventListener;
 @EnableProcessApplication
 @SpringBootApplication
 public class CamundaApplication {
-
-    @Autowired
-    private RuntimeService runtimeService;
-
-    @EventListener
-    private void processPostDeploy(PostDeployEvent event) {
-        runtimeService.startProcessInstanceByKey("article_creation");
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(CamundaApplication.class, args);
     }
