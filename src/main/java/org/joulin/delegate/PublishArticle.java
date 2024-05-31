@@ -32,14 +32,23 @@ public class PublishArticle implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) throws Exception {
         String title = (String) delegateExecution.getVariable("article_title");
         String text = (String) delegateExecution.getVariable("article_text");
-        Long article_ad_id = (Long) delegateExecution.getVariable("article_ad_id");
+        JacksonJsonNode ad_posts_json = (JacksonJsonNode) delegateExecution.getVariable("ad_posts");
+
+        List<Long> ad_posts_ids = new ArrayList<>();
+
+        if (ad_posts_json != null) {
+            ad_posts_ids = ad_posts_json.elements().stream()
+                    .filter(map -> map.hasProp("chosen") && map.prop("chosen").boolValue())
+                    .map(map -> map.prop("id").numberValue().longValue()).toList();
+        }
+
         JacksonJsonNode img_links_json = (JacksonJsonNode) delegateExecution.getVariable("img_links");
         List<String> images = img_links_json.elements().stream()
                 .map(map -> (String) map.prop("link").value()).toList();
 
         List<AdPost> adPosts = new ArrayList<>();
-        if (article_ad_id != null) {
-            adPostRepo.findById(article_ad_id).ifPresent(adPosts::add);
+        for (Long ad_post_id: ad_posts_ids) {
+            adPostRepo.findById(ad_post_id).ifPresent(adPosts::add);
         }
 
         Article article = new Article(

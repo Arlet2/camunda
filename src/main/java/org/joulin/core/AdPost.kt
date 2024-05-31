@@ -12,6 +12,7 @@ class AdPost(
     val id: Long = 0,
 
     var title: String,
+    @Column(columnDefinition = "TEXT")
     var body: String,
     var targetLink: String,
     var publishDate: LocalDateTime? = null,

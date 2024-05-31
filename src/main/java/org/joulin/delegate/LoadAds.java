@@ -25,6 +25,7 @@ public class LoadAds implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         List<AdPost> ad_posts = adPostRepo.findAllByStatus(AdPostStatus.PUBLISHED);
+        System.out.println(ad_posts);
         ObjectValue ad_posts_value =
                 Variables.objectValue(ad_posts).serializationDataFormat("application/json").create();
 

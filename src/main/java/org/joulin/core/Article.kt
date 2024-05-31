@@ -12,6 +12,7 @@ class Article(
 
     var title: String,
 
+    @Column(columnDefinition = "TEXT")
     var text: String,
 
     var images: List<String>,
@@ -23,6 +24,7 @@ class Article(
     @Enumerated(EnumType.STRING)
     var status: ArticleStatus,
 
+    @Column(columnDefinition = "TEXT")
     var clarificationText: String? = null,
 
     @OneToOne
