@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1kzjtpc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.23.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1kzjtpc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.23.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
   <bpmn:collaboration id="vbfdbsd">
     <bpmn:participant id="Participant_0cgh0kb" name="Pool" processRef="ad_process" />
   </bpmn:collaboration>
@@ -35,7 +35,7 @@
       <bpmn:outgoing>Flow_1d2k3md</bpmn:outgoing>
       <bpmn:outgoing>Flow_104a7mv</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Activity_0ae3nsg" name="Обновление каталога рекламы">
+    <bpmn:serviceTask id="Activity_0ae3nsg" name="Обновление каталога рекламы" camunda:expression="1" camunda:resultVariable="2+3">
       <bpmn:incoming>Flow_104a7mv</bpmn:incoming>
       <bpmn:outgoing>Flow_01b7vei</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -51,10 +51,14 @@
       <bpmn:outgoing>Flow_1bbfrvz</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_05snmgm" sourceRef="StartEvent_1" targetRef="Activity_1haqhxi" />
-    <bpmn:sequenceFlow id="Flow_1d2k3md" name="Нет" sourceRef="Gateway_1aftc37" targetRef="Activity_1haqhxi" />
+    <bpmn:sequenceFlow id="Flow_1d2k3md" name="Нет" sourceRef="Gateway_1aftc37" targetRef="Activity_1haqhxi">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">1 &gt; 0</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1b2lpk0" sourceRef="Activity_1haqhxi" targetRef="Activity_0ey1tya" />
     <bpmn:sequenceFlow id="Flow_1sncfib" sourceRef="Activity_0ey1tya" targetRef="Gateway_1aftc37" />
-    <bpmn:sequenceFlow id="Flow_104a7mv" name="Да" sourceRef="Gateway_1aftc37" targetRef="Activity_0ae3nsg" />
+    <bpmn:sequenceFlow id="Flow_104a7mv" name="Да" sourceRef="Gateway_1aftc37" targetRef="Activity_0ae3nsg">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">3 &lt; 1</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_01b7vei" sourceRef="Activity_0ae3nsg" targetRef="Gateway_0b0cy01" />
     <bpmn:sequenceFlow id="Flow_1bbfrvz" sourceRef="Gateway_0b0cy01" targetRef="Event_0j6i7iw" />
     <bpmn:sequenceFlow id="Flow_0tw9hcl" sourceRef="Gateway_0b0cy01" targetRef="Event_11ux3mv" />
@@ -65,12 +69,12 @@
         <dc:Bounds x="129" y="79" width="889" height="250" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_0mv6a2x_di" bpmnElement="Lane_0mv6a2x" isHorizontal="true">
-        <dc:Bounds x="159" y="79" width="859" height="125" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0xxumaq_di" bpmnElement="Lane_0xxumaq" isHorizontal="true">
         <dc:Bounds x="159" y="204" width="859" height="125" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0mv6a2x_di" bpmnElement="Lane_0mv6a2x" isHorizontal="true">
+        <dc:Bounds x="159" y="79" width="859" height="125" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">

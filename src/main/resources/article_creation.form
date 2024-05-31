@@ -50,7 +50,7 @@
       "key": "article_text",
       "validate": {
         "required": true,
-        "minLength": 100
+        "minLength": 50
       }
     },
     {
