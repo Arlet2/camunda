@@ -22,12 +22,12 @@
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_05snmgm</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_1haqhxi" name="Заполнение заявки на рекламу" camunda:formRef="ad_request" camunda:formRefBinding="latest">
+    <bpmn:userTask id="Activity_1haqhxi" name="Заполнение заявки на рекламу" camunda:formRef="ad_request" camunda:formRefBinding="latest" camunda:candidateGroups="Ads">
       <bpmn:incoming>Flow_05snmgm</bpmn:incoming>
       <bpmn:incoming>Flow_1d2k3md</bpmn:incoming>
       <bpmn:outgoing>Flow_1b2lpk0</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_0ey1tya" name="Модерация заявки" camunda:formRef="ad_moderation" camunda:formRefBinding="latest">
+    <bpmn:userTask id="Activity_0ey1tya" name="Модерация заявки" camunda:formRef="ad_moderation" camunda:formRefBinding="latest" camunda:candidateGroups="Sales">
       <bpmn:extensionElements />
       <bpmn:incoming>Flow_1b2lpk0</bpmn:incoming>
       <bpmn:outgoing>Flow_1sncfib</bpmn:outgoing>
@@ -64,7 +64,7 @@
       <bpmn:incoming>Flow_04jure2</bpmn:incoming>
       <bpmn:outgoing>Flow_01b7vei</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Activity_1gmz0vu" name="Подготовка объявления" camunda:formRef="ad_preparation" camunda:formRefBinding="latest">
+    <bpmn:userTask id="Activity_1gmz0vu" name="Подготовка объявления" camunda:formRef="ad_preparation" camunda:formRefBinding="latest" camunda:candidateGroups="Sales">
       <bpmn:incoming>Flow_104a7mv</bpmn:incoming>
       <bpmn:outgoing>Flow_04jure2</bpmn:outgoing>
     </bpmn:userTask>

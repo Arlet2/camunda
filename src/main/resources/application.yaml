@@ -13,6 +13,8 @@ camunda.bpm:
     firstName: Admin
   filter:
     create: All tasks
+  authorization:
+    enabled: true
 
 spring:
   main:

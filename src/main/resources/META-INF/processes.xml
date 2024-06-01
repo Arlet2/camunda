@@ -17,6 +17,8 @@
         <resource>forms/ad_moderation.form</resource>
         <resource>forms/ad_preparation.form</resource>
 
+        <resource>processes/expired_check.bpmn</resource>
+
         <properties>
             <property name="isDeleteUponUndeploy">false</property>
             <property name="isScanForProcessDefinitions">true</property>
