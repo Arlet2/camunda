@@ -1,31 +1,41 @@
 package org.joulin.delegate;
 
+import kotlin.Suppress;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.spin.impl.json.jackson.JacksonJsonNode;
 import org.joulin.core.AdPost;
+import org.joulin.core.AdRequest;
 import org.joulin.core.Article;
+import org.joulin.core.enums.AdPostStatus;
+import org.joulin.core.enums.AdRequestStatus;
 import org.joulin.core.enums.ArticleStatus;
 import org.joulin.repos.AdPostRepo;
+import org.joulin.repos.AdRequestRepo;
 import org.joulin.repos.ArticleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Component
 public class PublishArticle implements JavaDelegate {
-    @Autowired
+
     private final ArticleRepo articleRepo;
     private final AdPostRepo adPostRepo;
+    private final AdRequestRepo adRequestRepo;
 
-    public PublishArticle(ArticleRepo articleRepo, AdPostRepo adPostRepo) {
+    public PublishArticle(ArticleRepo articleRepo, AdPostRepo adPostRepo, AdRequestRepo adRequestRepo) {
         this.articleRepo = articleRepo;
         this.adPostRepo = adPostRepo;
+        this.adRequestRepo = adRequestRepo;
     }
 
     @Override
+    @Transactional
+    @SuppressWarnings("unchecked")
     public void execute(DelegateExecution delegateExecution) throws Exception {
         String title = (String) delegateExecution.getVariable("article_title");
         String text = (String) delegateExecution.getVariable("article_text");
@@ -48,19 +58,20 @@ public class PublishArticle implements JavaDelegate {
             adPostRepo.findById(ad_post_id).ifPresent(adPosts::add);
         }
 
+        // Update ad posts and ad requests statuses to published
+        for (AdPost adPost: adPosts) {
+            AdRequest adRequest = adPost.getAdRequest();
+            adRequest.setStatus(AdRequestStatus.PUBLISHED);
+            adRequestRepo.save(adRequest);
+
+            adPost.setStatus(AdPostStatus.PUBLISHED);
+            adPost.setPublishDate(LocalDateTime.now());
+            adPostRepo.save(adPost);
+        }
+
         Article article = new Article(
             0, title, text, images, adPosts, ArticleStatus.PUBLISHED, null, null
         );
         articleRepo.save(article);
-    }
-
-    class ChosenAd implements Serializable {
-        public Boolean chosen;
-        public Long id;
-
-        public ChosenAd(Boolean chosen, Long id) {
-            this.chosen = chosen;
-            this.id = id;
-        }
     }
 }

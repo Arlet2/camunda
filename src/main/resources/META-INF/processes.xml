@@ -7,15 +7,15 @@
     <process-archive name="loan-approval">
         <process-engine>default</process-engine>
 
-        <resource>article_creation.bpmn</resource>
-        <resource>article_creation.form</resource>
-        <resource>article_moderation.form</resource>
-        <resource>ad_adding.form</resource>
+        <resource>processes/article_creation.bpmn</resource>
+        <resource>forms/article_creation.form</resource>
+        <resource>forms/article_moderation.form</resource>
+        <resource>forms/ad_adding.form</resource>
 
-        <resource>ad_process.bpmn</resource>
-        <resource>ad_request.form</resource>
-        <resource>ad_moderation.form</resource>
-        <resource>ad_preparation.form</resource>
+        <resource>processes/ad_process.bpmn</resource>
+        <resource>forms/ad_request.form</resource>
+        <resource>forms/ad_moderation.form</resource>
+        <resource>forms/ad_preparation.form</resource>
 
         <properties>
             <property name="isDeleteUponUndeploy">false</property>
